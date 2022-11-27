@@ -1,11 +1,7 @@
 #include <iostream>
-#include "common.h">
-
-int MAX_ID = 0;
-
-void printLine() {
-	std::cout << "\n-----------------------------\n\n";
-}
+#include "common.h"
+#include "output.h"
+#include "students.h"
 
 int random(int min = 0, int max = 9)
 {
@@ -55,36 +51,12 @@ Student** generateDB(int count, Group* groups, int groupsCount)
 	return arr;
 }
 
-void printGroups(const Group* groups, const int groupsCount)
-{
-	std::cout << "Groups:";
-
-	for (int i{}; i < groupsCount; ++i) {
-		std::cout << "\t" << i + 1 << ": " << groups[i].title << '\n';
-	}
-	std::cout << "\n";
-}
-
-
-void renderStudent(const Student* s)
-{
-	std::cout << "id: " << s->id << '\n';
-	std::cout << "Name: " << s->f_name << ' ' << s->l_name << '\n';
-	std::cout << "Group: " << s->groupPtr->title << '\n';
-
-	std::cout << "GRADES:\n";
-	for (int i{}; i < s->gradesArr.gCount; ++i)
-		std::cout << s->gradesArr.grades[i] << ' ';
-
-	printLine();
-}
-
 
 Student** expandArr(Student** s_arr, int& studentsCount) {
 	Student** new_arr = new Student*[studentsCount + 1]{ nullptr };
 	for (int i{ 0 }; i < studentsCount; ++i)
 	{
-		//new_arr[i] = new Student;
+
 		new_arr[i] = s_arr[i];
 		delete s_arr[i];
 	}
@@ -99,35 +71,21 @@ Student** expandArr(Student** s_arr, int& studentsCount) {
 	return new_arr;
 }
 
-Student** addStudent(Student** s_arr, int& studentsCount, Group* groups, const int groupsCount)
-{
+Student** narrowDown(Student** s_arr, int& studentsCount) {
+	Student** new_arr = new Student * [studentsCount - 1]{ nullptr };
+	for (int i{ 0 }; i < studentsCount; ++i)
+	{
 
-	s_arr = expandArr(s_arr, studentsCount);
+		new_arr[i] = s_arr[i];
+		delete s_arr[i];
+	}
 
-	int group;
-	s_arr[studentsCount]->id = ++MAX_ID;
 
-	std::cout << "New Student:" << "\n\n";
+	delete new_arr[studentsCount];
+	delete[] s_arr;
 
-	std::cout << "Firts Name: ";
-	std::cin >> s_arr[studentsCount]->f_name;
 
-	std::cout << "Last Name: ";
-	std::cin >> s_arr[studentsCount]->l_name;
 
-	std::cout << "id: " << s_arr[studentsCount]->id << '\n';
-
-	printGroups(groups, groupsCount);
-	std::cout << "Choose the group: ";
-	std::cin >> group;
-	
-	s_arr[studentsCount]->groupPtr = &groups[group - 1];
-
-	std::cout << "\nThe student were added...";
-
-	printLine();
-
-	studentsCount++;
-
-	return s_arr;
+	return new_arr;
 }
+

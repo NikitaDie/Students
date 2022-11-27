@@ -3,6 +3,6 @@
 
 Student** generateDB(int count, Group* groups, int groupsCount);
 
-void renderStudent(const Student* s);
+Student** expandArr(Student** s_arr, int& studentsCount);
 
-Student** addStudent(Student** s_arr, int& studentsCount, Group* groups, const int groupsCount);
+Student** narrowDown(Student** s_arr, int& studentsCount);

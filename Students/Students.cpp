@@ -1,35 +1,51 @@
-﻿#include <iostream>
 #include <iostream>
 #include "common.h"
+#include "students.h"
+#include "output.h"
 #include "logic.h"
 
-int main()
+Student** addStudent(Student** s_arr, int& studentsCount, Group* groups, const int groupsCount)
 {
-	srand(time(0));
-	rand();
 
-	Teacher t1{ "Brus", "Willis" };
-	Teacher t2{ "Chack", "Norris" };
-	Teacher t3{ "Jackie", "Chan" };
+	s_arr = expandArr(s_arr, studentsCount);
 
-	int groupsCount = 7;
-	Group* groups = new Group[groupsCount]{
-		{"P10", &t2},
-		{"P11", &t2},
-		{"P12", &t2},
-		{"P13", &t1},
-		{"P14", &t1},
-		{"P15", &t3},
-		{"P16", &t3},
-	};
+	int group;
+	s_arr[studentsCount]->id = ++MAX_ID;
 
-	int studentsCount = 20;
-	Student** students_arr = generateDB(studentsCount, groups, groupsCount);
+	std::cout << "New Student:" << "\n\n";
 
+	std::cout << "Firts Name: ";
+	std::cin >> s_arr[studentsCount]->f_name;
 
-	students_arr = addStudent(students_arr, studentsCount, groups, groupsCount);
+	std::cout << "Last Name: ";
+	std::cin >> s_arr[studentsCount]->l_name;
 
-	renderStudent(students_arr[studentsCount - 1]);
+	std::cout << "id: " << s_arr[studentsCount]->id << '\n';
 
-	return 0;
+	printGroups(groups, groupsCount);
+	std::cout << "Choose the group: ";
+	std::cin >> group;
+
+	s_arr[studentsCount]->groupPtr = &groups[group - 1];
+
+	std::cout << "\nThe student were added...";
+
+	printLine();
+
+	studentsCount++;
+
+	return s_arr;
+}
+
+Student** deleteStudent(Student** s_arr, int& studentsCount, int student_index)
+{
+	std::cout << "\nThe student" << s_arr[student_index]->id << ", " << s_arr[student_index]->l_name << s_arr[student_index]->f_name << "were deleted...";
+
+	s_arr = narrowDown(s_arr, studentsCount);
+
+	printLine();
+
+	studentsCount--;
+
+	return s_arr;
 }
