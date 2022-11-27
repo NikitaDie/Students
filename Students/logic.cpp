@@ -66,12 +66,11 @@ void printGroups(const Group* groups, const int groupsCount)
 }
 
 
-void renderStudent(Student* s)
+void renderStudent(const Student* s)
 {
-	std::cout << s;
 	std::cout << "id: " << s->id << '\n';
-	std::cout << "name: " << s->f_name << ' ' << s->l_name << '\n';
-	std::cout << "group: " << s->groupPtr->title << ',';
+	std::cout << "Name: " << s->f_name << ' ' << s->l_name << '\n';
+	std::cout << "Group: " << s->groupPtr->title << '\n';
 
 	std::cout << "GRADES:\n";
 	for (int i{}; i < s->gradesArr.gCount; ++i)
@@ -81,7 +80,7 @@ void renderStudent(Student* s)
 }
 
 
-Student** expandArr(Student** s_arr, int studentsCount) {
+Student** expandArr(Student** s_arr, int& studentsCount) {
 	Student** new_arr = new Student*[studentsCount + 1]{ nullptr };
 	for (int i{ 0 }; i < studentsCount; ++i)
 	{
@@ -90,36 +89,45 @@ Student** expandArr(Student** s_arr, int studentsCount) {
 		delete s_arr[i];
 	}
 	
-	new_arr[studentsCount + 1] = new Student;
+
+	new_arr[studentsCount] = new Student;
 
 	delete [] s_arr;
+
+	
 
 	return new_arr;
 }
 
-Student** addStudent(Student** s_arr, int studentsCount, Group* groups, const int groupsCount)
+Student** addStudent(Student** s_arr, int& studentsCount, Group* groups, const int groupsCount)
 {
 
 	s_arr = expandArr(s_arr, studentsCount);
 
 	int group;
-	s_arr[studentsCount + 1]->id = ++MAX_ID;
+	s_arr[studentsCount]->id = ++MAX_ID;
 
 	std::cout << "New Student:" << "\n\n";
 
 	std::cout << "Firts Name: ";
-	std::cin >> s_arr[studentsCount + 1]->f_name;
+	std::cin >> s_arr[studentsCount]->f_name;
 
 	std::cout << "Last Name: ";
-	std::cin >> s_arr[studentsCount + 1]->l_name;
+	std::cin >> s_arr[studentsCount]->l_name;
 
-	std::cout << "id: " << s_arr[studentsCount + 1]->id << '\n';
+	std::cout << "id: " << s_arr[studentsCount]->id << '\n';
 
 	printGroups(groups, groupsCount);
 	std::cout << "Choose the group: ";
 	std::cin >> group;
 	
+	s_arr[studentsCount]->groupPtr = &groups[group - 1];
+
+	std::cout << "\nThe student were added...";
+
 	printLine();
+
+	studentsCount++;
 
 	return s_arr;
 }

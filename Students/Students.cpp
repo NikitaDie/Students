@@ -27,14 +27,9 @@ int main()
 	Student** students_arr = generateDB(studentsCount, groups, groupsCount);
 
 
-
 	students_arr = addStudent(students_arr, studentsCount, groups, groupsCount);
 
-	for (int i{ 0 }; i < 21; ++i) {
-		std::cout << students_arr[i] << "\n";
-	}
-
-	renderStudent(students_arr[20]);
+	renderStudent(students_arr[studentsCount - 1]);
 
 	return 0;
 }
