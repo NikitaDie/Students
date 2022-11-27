@@ -1,8 +1,8 @@
 #include <iostream>
-#include "common.h"
-#include "students.h"
+//#include "common.h"
 #include "output.h"
 #include "logic.h"
+
 
 Student** addStudent(Student** s_arr, int& studentsCount, Group* groups, const int groupsCount)
 {

@@ -1,7 +1,5 @@
 #pragma once
 #include "common.h"
-#include "groups.h"
-#include "students.h"
 
 void printLine();
 

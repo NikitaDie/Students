@@ -4,12 +4,6 @@
 
 int groupsCount = 7;
 
-struct Group
-{
-	std::string title{ "no_title" };
-	Teacher* teacher{ nullptr };
-};
-
 
 Group* groups = new Group[groupsCount]{
 	{"P10", &t2},

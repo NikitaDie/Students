@@ -1,10 +1,10 @@
 ﻿#include <iostream>
 #include "common.h"
-#include "teacher.h"
-#include "groups.h"
+#include "logic.h"
 #include "students.h"
 #include "output.h"
-#include "logic.h"
+#include "groups.h"
+
 
 int main()
 {

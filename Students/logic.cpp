@@ -1,7 +1,5 @@
 #include <iostream>
 #include "common.h"
-#include "output.h"
-#include "students.h"
 
 int random(int min = 0, int max = 9)
 {
