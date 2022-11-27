@@ -3,7 +3,7 @@
 struct Teacher
 {
 	std::string f_name{ "no_f_name" };
-	std::string l_name{ "no_f_name" };
+	std::string l_name{ "no_l_name" };
 };
 
 struct Group
@@ -22,7 +22,7 @@ struct Student
 {
 	int id{ -1 };
 	std::string f_name{ "no_f_name" };
-	std::string l_name{ "no_f_name" };
+	std::string l_name{ "no_l_name" };
 	Group* groupPtr{ nullptr };
 	GradesArr gradesArr{};
 };
