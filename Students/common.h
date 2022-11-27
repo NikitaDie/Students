@@ -1,8 +1,6 @@
 #pragma once
 #include <iostream>
 
-int MAX_ID = 0;
-
 
 struct Teacher
 {

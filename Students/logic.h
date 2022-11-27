@@ -2,7 +2,7 @@
 #include "common.h"
 
 
-Student** generateDB(int count, Group* groups, int groupsCount);
+Student** generateDB(int count, Group* groups, int groupsCount, int &MAX_ID);
 
 Student** expandArr(Student** s_arr, int& studentsCount);
 

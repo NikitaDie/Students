@@ -4,7 +4,7 @@
 #include "logic.h"
 
 
-Student** addStudent(Student** s_arr, int& studentsCount, Group* groups, const int groupsCount)
+Student** addStudent(Student** s_arr, int& studentsCount, Group* groups, const int groupsCount, int &MAX_ID)
 {
 
 	s_arr = expandArr(s_arr, studentsCount);

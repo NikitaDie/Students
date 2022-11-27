@@ -27,7 +27,7 @@ int* generateArr(int count, int min = 0, int max = 9)
 	return arr;
 }
 
-Student** generateDB(int count, Group* groups, int groupsCount)
+Student** generateDB(int count, Group* groups, int groupsCount, int &MAX_ID)
 {
 	Student** arr = new Student*[count];
 
